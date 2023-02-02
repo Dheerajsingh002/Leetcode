@@ -1,16 +1,19 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
-         List<List<Integer>> ans=new ArrayList<>();
-        backtrace(nums,0,new ArrayList<Integer>(),ans);
-        return ans;   
-    }
-    public void backtrace(int[] nums,int start,List<Integer> track,List<List<Integer>> ans){
-        ans.add(new ArrayList<>(track));
-        for(int i=start;i<nums.length;i++)
-        {
-            track.add(nums[i]);
-            backtrace(nums,i+1,track,ans);
-            track.remove(track.size()-1);
+        List<List<Integer>> res=new ArrayList();
+        res.add(new ArrayList());
+        for(int num:nums){
+            int n=res.size();
+            for(int j=0;j<n;j++)
+            {
+                List<Integer> temp=new ArrayList(res.get(j));
+                temp.add(num);
+                res.add(temp);
+
+            }
+
         }
+        return res;
+        
     }
 }
